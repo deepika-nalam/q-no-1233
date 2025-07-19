@@ -1,4 +1,5 @@
-# q-no-1233
+
+#q no 1233
 import java.util.*;
 
 class Solution {
@@ -6,18 +7,21 @@ class Solution {
         boolean wordEnd = false;
         Map<String, TrieNode> child = new HashMap<>();
     }
+
+    // Insert folder into the Trie
     private void trieInsert(String folder, TrieNode curr) {
         int i = 1;
         while (i < folder.length()) {
             StringBuilder name = new StringBuilder();
-            while (i < folder.length() && folder.charAt(i) != '/') { 
+            while (i < folder.length() && folder.charAt(i) != '/') { // Extract folder name
                 name.append(folder.charAt(i));
                 i++;
             }
 
-            if (curr.wordEnd) return; 
+            if (curr.wordEnd) return; // Stop if a parent folder already exists
+
             String nameStr = name.toString();
-            if (!curr.child.containsKey(nameStr)) 
+            if (!curr.child.containsKey(nameStr)) // Create a new node if the path doesn't exist
                 curr.child.put(nameStr, new TrieNode());
             
             curr = curr.child.get(nameStr);
@@ -26,7 +30,7 @@ class Solution {
         curr.wordEnd = true;
     }
 
-
+    // Traverse the Trie to collect results
     private void searchTrie(TrieNode curr, List<String> res, String path) {
         if (curr == null) return;
         if (curr.wordEnd) {
@@ -51,3 +55,8 @@ class Solution {
         return res;
     }
 }
+
+
+            
+           
+  
